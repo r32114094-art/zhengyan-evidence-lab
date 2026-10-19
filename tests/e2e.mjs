@@ -8,7 +8,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownlo
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 const pass=name=>{results.push({name,status:'passed'});console.log('PASS',name)};
 try{
- await page.goto(appUrl,{waitUntil:'networkidle'});
+ page.setDefaultTimeout(90000); await page.goto(appUrl,{waitUntil:'networkidle'});
  await page.getByRole('button',{name:'拆解命题',exact:true}).click();
  await page.getByRole('combobox',{name:'主要贡献阈值'}).selectOption('70');
  await page.getByRole('button',{name:'确认并验证',exact:true}).click();
@@ -17,10 +17,10 @@ try{
  await page.getByRole('button',{name:'2024 年度报告 · PDF 第 11 页',exact:true}).click();
  assert.match(await page.getByRole('link',{name:'打开原始 PDF'}).getAttribute('href'),/1222881496.PDF#page=11/);
  await page.keyboard.press('Escape');pass('source receipt and exact PDF page link');
- await page.getByRole('button',{name:'扣非等于主营吗？',exact:true}).click();await page.getByText('扣非利润不等于主营利润，也不代表剔除了所有补助。',{exact:false}).waitFor();pass('bounded follow-up');
+ await page.getByRole('button',{name:'扣非等于主营吗？',exact:true}).click();await page.locator('.chat-pair').first().waitFor();assert.match(await page.locator('.chat-pair').first().innerText(),/不等于|不能|不完全|不能等同/);pass('evidence-bounded follow-up');
  await page.getByLabel('研究备注与下一步').fill('核对营运资本与补助明细。');await page.getByRole('button',{name:'保存研究',exact:true}).click();
  await page.reload({waitUntil:'networkidle'});await page.getByRole('button',{name:/研究任务/}).click();await page.getByRole('button',{name:'打开研究',exact:true}).click();assert.equal(await page.getByLabel('研究备注与下一步').inputValue(),'核对营运资本与补助明细。');pass('save, reload and restore note and research');
- const dl=page.waitForEvent('download');await page.getByRole('button',{name:'导出研究',exact:true}).click();const download=await dl;const content=JSON.parse(await fs.readFile(await download.path(),'utf8'));assert.ok(content.sources.length);assert.equal(content.notes,'核对营运资本与补助明细。');pass('export contains evidence, sources and notes');
+ assert.equal(await page.locator('.chat-pair').count(),1); const dl=page.waitForEvent('download');await page.getByRole('button',{name:'导出研究',exact:true}).click();const download=await dl;const content=JSON.parse(await fs.readFile(await download.path(),'utf8'));assert.ok(content.sources.length);assert.equal(content.notes,'核对营运资本与补助明细。');pass('export contains evidence, sources and notes');
  await page.getByRole('button',{name:'年度比较',exact:true}).click();await page.getByRole('button',{name:'用 2025 年度重新验证',exact:true}).click();await page.getByRole('heading',{name:'核心前提被反对',exact:true}).waitFor();pass('new annual evidence changes conclusion');
  await page.getByRole('button',{name:'修订命题',exact:true}).click();
  await page.route('**/api/research',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'模拟：验证服务暂不可用'})}));

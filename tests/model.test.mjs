@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {analyze} from '../lib/research.ts';
+import {modelConfig,validateModelOutput,reviewWithModel} from '../lib/model.ts';
+const r=analyze({text:'比亚迪2024年盈利改善主要来自主营业务，而非一次性收益。',year:'2024',kind:'earnings',threshold:70});
+const env={EVIDENCE_MODEL_PROVIDER:'ollama',EVIDENCE_MODEL_BASE_URL:'http://127.0.0.1:11434',EVIDENCE_MODEL_NAME:'qwen2.5:1.5b'};
+const output={assessment:'扣非利润增长支持盈利改善，但现金流下降构成反向线索。缺少利润桥，主营因果仍不能确认。',evidence_ids:['E1','E3','U1'],questions:['扣非是否等于主营利润？','现金流变化是否来自营运资本？'],limitations:['缺少完整的主营利润桥。']};
+test('model disabled without explicit server configuration',async()=>{let called=false;const a=await reviewWithModel(r,{},undefined,async()=>{called=true;});assert.equal(a.status,'not_configured');assert.equal(called,false);});
+test('invalid model endpoint and embedded credentials rejected',()=>{for(const u of ['http://remote.example','https://user:pass@example.com','file:///etc/passwd'])assert.throws(()=>modelConfig({...env,EVIDENCE_MODEL_BASE_URL:u}));assert.ok(modelConfig(env));});
+test('structured evidence-linked review accepted',()=>{assert.deepEqual(validateModelOutput(output,r).evidenceIds,['E1','E3','U1']);});
+test('fabricated evidence id rejected',()=>{assert.throws(()=>validateModelOutput({...output,evidence_ids:['E999']},r),/不存在/);});
+test('unsupported numeric claim rejected',()=>{assert.throws(()=>validateModelOutput({...output,assessment:'公司将增长987654.32%，因此可以确信其盈利改善，而且所有主营业务都会持续高速增长。'},r),/数字/);});
+test('trading advice rejected',()=>{assert.throws(()=>validateModelOutput({...output,assessment:'根据这些财报的强劲增长，建议立即买入该股票，虽然主营利润桥仍然不完整且现金流下降。'},r),/边界/);});
+test('malformed model lists rejected',()=>{assert.throws(()=>validateModelOutput({...output,questions:[]},r));});
+test('service failure does not erase deterministic conclusion',async()=>{const a=await reviewWithModel(r,env,undefined,async()=>new Response('',{status:503}));assert.equal(a.status,'unavailable');assert.match(r.verdict,/部分支持/);});
+test('mock protocol response records provenance',async()=>{const a=await reviewWithModel(r,env,undefined,async(url,opts)=>{const payload=JSON.parse(opts.body);assert.equal(payload.stream,false);assert.equal(payload.model,env.EVIDENCE_MODEL_NAME);assert.equal(payload.format.type,'object');return Response.json({model:env.EVIDENCE_MODEL_NAME,done:true,message:{content:JSON.stringify(output)},eval_count:88});});assert.equal(a.status,'success');assert.equal(a.outputTokens,88);assert.ok(a.generatedAt);});
+test('truncated and invalid JSON outputs are discarded',async()=>{for(const body of [{done:false,model:env.EVIDENCE_MODEL_NAME},{done:true,model:env.EVIDENCE_MODEL_NAME,message:{content:'not json'}}]){const a=await reviewWithModel(r,env,undefined,async()=>Response.json(body));assert.equal(a.status,'invalid_output');}});
+test('scope failure never invokes model',async()=>{let called=false;const a=await reviewWithModel({...r,scopeSupported:false},env,undefined,async()=>{called=true;});assert.equal(a.status,'skipped');assert.equal(called,false);});
+test('timeout is distinguishable from valid model output',async()=>{const a=await reviewWithModel(r,{...env,EVIDENCE_MODEL_TIMEOUT_MS:'1000'},undefined,async(url,opts)=>new Promise((_,reject)=>opts.signal.addEventListener('abort',()=>reject(Error('aborted')))));assert.equal(a.status,'unavailable');assert.match(a.message,/超时/);});
+
+test('incomparable subsidy and margin assertion rejected',()=>{assert.throws(()=>validateModelOutput({...output,limitations:['补助与毛利率有差异，因此需要拼接。']},r),/口径/);});

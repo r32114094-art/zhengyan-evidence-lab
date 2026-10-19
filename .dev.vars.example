@@ -1,0 +1,8 @@
+# 复现者需自行安装Ollama并下载模型，然后复制为 .dev.vars（不要提交实际配置）。
+# 本地示例不需要OpenAI密钥。
+EVIDENCE_MODEL_PROVIDER=ollama
+EVIDENCE_MODEL_BASE_URL=http://127.0.0.1:11434
+EVIDENCE_MODEL_NAME=qwen2.5:3b
+EVIDENCE_MODEL_TIMEOUT_MS=60000
+# 若使用自行部署且带鉴权的HTTPS Ollama网关，在实际配置中设置：
+# EVIDENCE_MODEL_API_KEY=

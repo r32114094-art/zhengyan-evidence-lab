@@ -1,7 +1,8 @@
+import type {ModelReview} from './model';
 import data from '../data/financials.json' with {type:'json'};
 export type Thesis={text:string;year:string;kind:'earnings'|'valuation'|'supply';threshold:number};
 export type Evidence={id:string;side:'support'|'oppose'|'unknown';title:string;observation:string;interpretation:string;sourceId?:string;page?:number;formula?:string;limitation:string};
-export type Result={id:string;createdAt:string;input:Thesis;revised:string;verdict:string;summary:string;evidence:Evidence[];conflicts:string[];triggers:string[];metrics:{label:string;value:string;change:string}[];mode:string;scopeSupported:boolean;questions:string[];fingerprint:string};
+export type Result={id:string;createdAt:string;input:Thesis;revised:string;verdict:string;summary:string;evidence:Evidence[];conflicts:string[];triggers:string[];metrics:{label:string;value:string;change:string}[];mode:string;scopeSupported:boolean;questions:string[];fingerprint:string;ai?:ModelReview};
 export const sources=data.sources;
 export const financials=data.annual;
 export const examples=[
