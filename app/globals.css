@@ -8,3 +8,5 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 /* Keep small research text readable against the paper palette. */
 .evidence-card>p,.interpretation,.conflict p,.trigger-panel li,.method-grid p{color:#66765d}.page-heading p,.intro-grid p,.revised p{color:#75816b}.source-info p,.followup-suggestions button{color:#76876a}.source-link{color:#678453}.metrics article>span{color:#6f805e}.chat-pair p{color:#687d58}
+
+@media(max-width:700px){.sidebar{box-shadow:none}.sidebar.open{box-shadow:20px 0 60px #1e382333}}
