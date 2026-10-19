@@ -1,0 +1,221 @@
+{
+  "company": {
+    "name": "比亚迪股份有限公司",
+    "aShareCode": "002594",
+    "hShareCode": "01211"
+  },
+  "snapshotAt": "2026-10-19T04:17:48.147279+00:00",
+  "units": {
+    "revenue": "CNY yuan",
+    "profit": "CNY yuan",
+    "adjustedProfit": "CNY yuan",
+    "operatingCashFlow": "CNY yuan",
+    "autoRevenue": "CNY yuan",
+    "autoMargin": "percent, 22.31 means 22.31%"
+  },
+  "annual": {
+    "2023": {
+      "revenue": 602315354000,
+      "profit": 30040811000,
+      "adjustedProfit": 28462432000,
+      "operatingCashFlow": 169725025000,
+      "autoRevenue": 483453318000,
+      "autoMargin": 21.02,
+      "sourceId": "BYD-2023-HKEX",
+      "autoMarginSourceId": "BYD-2024-CNINFO",
+      "autoMarginBasis": "2024 annual report p25 restated comparative; warranty costs reclassified to cost of revenue"
+    },
+    "2024": {
+      "revenue": 777102455000,
+      "profit": 40254346000,
+      "adjustedProfit": 36982887000,
+      "operatingCashFlow": 133453873000,
+      "autoRevenue": 617381935000,
+      "autoMargin": 22.31,
+      "sourceId": "BYD-2024-CNINFO",
+      "reportedYoY": {
+        "revenue": 29.02,
+        "profit": 34.0,
+        "adjustedProfit": 29.94,
+        "operatingCashFlow": -21.37,
+        "autoRevenue": 27.7,
+        "autoMarginPercentagePoints": 1.29
+      }
+    },
+    "2025": {
+      "revenue": 803964958000,
+      "profit": 32619022000,
+      "adjustedProfit": 29445703000,
+      "operatingCashFlow": 59135544000,
+      "autoRevenue": 648645636000,
+      "autoMargin": 20.49,
+      "sourceId": "BYD-2025-SZSE",
+      "reportedYoY": {
+        "revenue": 3.46,
+        "profit": -18.97,
+        "adjustedProfit": -20.38,
+        "operatingCashFlow": -55.69,
+        "autoRevenue": 5.06,
+        "autoMarginPercentagePoints": -1.82
+      }
+    }
+  },
+  "subsidyEvidence": {
+    "2024": {
+      "nonRecurringGovernmentGrants": 3780737000,
+      "nonRecurringGovernmentGrants2023": 2187382000,
+      "unit": "CNY yuan",
+      "sourceId": "BYD-2024-CNINFO",
+      "pdfPage": 12,
+      "printedPage": 12,
+      "qualification": "Excludes subsidies closely related to normal operations, meeting state policies, enjoyed under determined standards, and having continuing impact on profit/loss. Not all subsidies.",
+      "totalGovernmentGrantsInProfitLossRaw": 10659878,
+      "totalGovernmentGrantsInProfitLossRawUnit": "CNY thousand",
+      "totalGovernmentGrantsInProfitLoss": 10659878000,
+      "totalGovernmentGrantsInProfitLoss2023": 4620833000,
+      "totalSubsidiesPdfPage": 250,
+      "totalSubsidiesPrintedPage": 250,
+      "unitSourcePage": 158
+    }
+  },
+  "sources": [
+    {
+      "id": "BYD-2023-HKEX",
+      "title": "比亚迪股份有限公司 2023 年年度报告全文",
+      "year": 2023,
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2024/0326/2024032602309_c.pdf",
+      "publishedDate": "2024-03-26",
+      "publishedDateBasis": "HKEX cover announcement dated 2024-03-26",
+      "sha256": "56ceade3979244f5019f1334737c5134224dc1d93265b7e1a46133ebc0a49879",
+      "pdfPageCount": 258,
+      "pages": {
+        "mainMetrics": {
+          "pdfPage": 12,
+          "printedPage": 10
+        }
+      },
+      "origin": "比亚迪股份有限公司",
+      "sourceFamily": "BYD-annual-2023",
+      "isIndependentOfOtherBYDFilings": false,
+      "retrievedAt": "2026-10-19T04:17:47.555780+00:00"
+    },
+    {
+      "id": "BYD-2024-CNINFO",
+      "title": "比亚迪股份有限公司 2024 年年度报告全文",
+      "year": 2024,
+      "url": "https://static.cninfo.com.cn/finalpage/2025-03-25/1222881496.PDF",
+      "publishedDate": "2025-03-25",
+      "publishedDateBasis": "CNINFO disclosure URL date; board approval 2025-03-24 (p157)",
+      "sha256": "e9c2d7fdd088e151ccb6c8ad3d95587b2b014b10f2c9731508d23ce07fde4de3",
+      "pdfPageCount": 290,
+      "pages": {
+        "revenue": {
+          "pdfPage": 10,
+          "printedPage": 10
+        },
+        "profitAndCashflow": {
+          "pdfPage": 11,
+          "printedPage": 11
+        },
+        "nonRecurring": {
+          "pdfPage": 12,
+          "printedPage": 12
+        },
+        "autoRevenue": {
+          "pdfPage": 24,
+          "printedPage": 24
+        },
+        "autoMarginAndRestated2023": {
+          "pdfPage": 25,
+          "printedPage": 25
+        },
+        "cashflowExplanation": {
+          "pdfPage": 34,
+          "printedPage": 34
+        },
+        "allProfitLossSubsidies": {
+          "pdfPage": 250,
+          "printedPage": 250
+        },
+        "notesUnit": {
+          "pdfPage": 158,
+          "printedPage": 158
+        }
+      },
+      "origin": "比亚迪股份有限公司",
+      "sourceFamily": "BYD-annual-2024",
+      "isIndependentOfOtherBYDFilings": false,
+      "retrievedAt": "2026-10-19T04:17:47.738113+00:00"
+    },
+    {
+      "id": "BYD-2024-HKEX",
+      "title": "比亚迪股份有限公司 2024 年年度报告全文",
+      "year": 2024,
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0324/2025032401124_c.pdf",
+      "publishedDate": "2025-03-24",
+      "publishedDateBasis": "HKEX cover announcement dated 2025-03-24",
+      "sha256": "07bfe8d532f8912fea32c8241cafd25c0bb28948e7903d5dfe23161177073e4e",
+      "pdfPageCount": 291,
+      "pages": {
+        "profitAndCashflow": {
+          "pdfPage": 12,
+          "printedPage": 11
+        }
+      },
+      "origin": "比亚迪股份有限公司",
+      "sourceFamily": "BYD-annual-2024",
+      "isIndependentOfOtherBYDFilings": false,
+      "retrievedAt": "2026-10-19T04:17:48.050061+00:00",
+      "mirrorOf": "BYD-2024-CNINFO",
+      "mirrorNote": "Same company filing republished with HKEX cover, not independent corroboration. One additional physical page."
+    },
+    {
+      "id": "BYD-2025-SZSE",
+      "title": "比亚迪股份有限公司 2025 年年度报告全文",
+      "year": 2025,
+      "url": "https://disc.static.szse.cn/download/disc/disk03/finalpage/2026-03-28/f5cdbdbf-b138-4e83-8c6d-5a7eecb9e670.PDF",
+      "publishedDate": "2026-03-28",
+      "publishedDateBasis": "SZSE disclosure URL date; board approval 2026-03-27",
+      "sha256": "710d8b2e08e37ba521f1c4071d2c3e2369d3cadabc21a45073215d9f72138b0b",
+      "pdfPageCount": 268,
+      "pages": {
+        "mainMetrics": {
+          "pdfPage": 11,
+          "printedPage": 11
+        },
+        "nonRecurring": {
+          "pdfPage": 12,
+          "printedPage": 12
+        },
+        "autoRevenue": {
+          "pdfPage": 29,
+          "printedPage": 29
+        },
+        "autoMargin": {
+          "pdfPage": 30,
+          "printedPage": 30
+        }
+      },
+      "origin": "比亚迪股份有限公司",
+      "sourceFamily": "BYD-annual-2025",
+      "isIndependentOfOtherBYDFilings": false,
+      "retrievedAt": "2026-10-19T04:17:48.147267+00:00"
+    }
+  ],
+  "conclusions": [
+    "2024 revenue, parent profit and adjusted profit grew; automotive-related segment comparable gross margin improved. This supports improvement in reported earnings, but does not establish a single causal mechanism.",
+    "2024 operating cash flow fell 21.37%. The company says cash paid for goods/services increased. This weakens a broad claim that earnings quality improved comprehensively.",
+    "2025 added annual evidence weakens continuation of the 2024 improvement: revenue +3.46%, parent profit -18.97%, adjusted profit -20.38%, operating cash flow -55.69%, and automotive-related segment margin 20.49%.",
+    "Adjusted profit is not a subsidy-free profit measure; the government subsidy footnote is broader than the non-recurring subsidy line.",
+    "No valuation/price evidence was verified here; no buy/sell conclusion follows from these accounting facts.",
+    "2025 is the latest COMPLETE ANNUAL period verified here; a 2026 interim filing exists, so do not call 2025 the latest company financial disclosure."
+  ],
+  "freshnessCaveat": {
+    "2026InterimReportDiscoveredButNotAnalyzed": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-29/56e933c9-717e-42bd-8c21-3a0a11b8d2d0.PDF"
+  },
+  "verification": [
+    "Downloaded each actual PDF via HTTPS; parsed pypdf pages; independently opened all three annual source URLs using web tool; verified 2024 HKEX cover and matching core metrics.",
+    "Physical page numbers are 1-indexed; printed page values read from page headers. SHA-256 computed from downloaded bytes.",
+    "The 2024 CNINFO and HKEX versions are one issuer source family, not two independent sources."
+  ]
+}
